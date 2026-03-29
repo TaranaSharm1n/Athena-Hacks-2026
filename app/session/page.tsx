@@ -1,7 +1,13 @@
+"use client";
+import { useState } from "react";
 import Timer from "../components/timer";
 import WebcamFeed from "../components/webcam";
+import WorkTimerPopup from "../components/timer_popup";
+
+
 
 export default function Session() {
+
   return (
     <main className="h-screen w-screen flex justify-center"
     style={{
@@ -19,6 +25,11 @@ export default function Session() {
       <div className="absolute top-80 right-80 text-center">
         <Timer />
       </div>
+      <WorkTimerPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        onConfirm={handleConfirm}
+      />
     </main>
   );
 }

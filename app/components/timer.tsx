@@ -1,7 +1,12 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 
-const Timer: React.FC = () => {
+interface TimerProps {
+  durationMinutes: number; // Duration set by user
+  start: boolean;          // Whether to start counting
+}
+
+const Timer: React.FC<TimerProps> = ({ durationMinutes, start }) => {
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const intervalRef = useRef<number | null>(null);
@@ -47,17 +52,13 @@ const Timer: React.FC = () => {
     }
   };
 
-
-
   const toggleTimer = () => {
     if(isRunning){
       playEndTaskSound();
     } else {
       playClickSound();
-      
     }
     setIsRunning(prev => !prev);
-    
   };
 
   useEffect(() => {
@@ -65,6 +66,10 @@ const Timer: React.FC = () => {
       intervalRef.current = window.setInterval(() => {
         setSeconds(prev => prev + 1);
       }, 1000);
+      if(seconds >= durationMinutes * 60){
+        playEndTaskSound();
+        resetTimer();
+      }
     } else {
       if (intervalRef.current !== null) {
         clearInterval(intervalRef.current);
