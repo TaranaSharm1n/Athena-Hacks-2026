@@ -4,27 +4,38 @@ import React, { useState } from "react";
 interface TimerPopupProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: (minutes: number) => void;
+  onConfirm: (taskName: string, plantTypeId: string, minutes: number) => void;
 }
 
 const TimerPopup: React.FC<TimerPopupProps> = ({ isOpen, onClose, onConfirm }) => {
   const [selectedMinutes, setSelectedMinutes] = useState(30);
+  const [taskName, setTaskName] = useState("");
 
   if (!isOpen) return null;
 
   const handleConfirm = () => {
-    onConfirm(selectedMinutes);
+    if (!taskName.trim()) return // don't allow empty name
+    onConfirm(taskName, "cherry-blossoms", selectedMinutes);
     onClose();
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-slate-900 p-6 rounded-xl flex flex-col items-center">
-        <h2 className="text-white mb-4">Select Work Duration</h2>
+      <div className="bg-slate-900 p-6 rounded-xl flex flex-col items-center gap-4">
+        <h2 className="text-white text-lg font-semibold">New Study Session</h2>
+        
+        <input
+          type="text"
+          placeholder = "What are you working on?"
+          value={taskName}
+          onChange={(e) => setTaskName(e.target.value)}
+          className="w-full p-2 rounded bg-gray-700 text-white placeholder-gray-400"
+        />
+
         <select
           value={selectedMinutes}
           onChange={(e) => setSelectedMinutes(Number(e.target.value))}
-          className="mb-4 p-2 rounded bg-gray-700 text-white"
+          className="w-full p-2 rounded bg-gray-700 text-white"
         >
           {Array.from({ length: 8 }, (_, i) => (i + 1) * 30).map((minutes) => (
             <option key={minutes} value={minutes}>
