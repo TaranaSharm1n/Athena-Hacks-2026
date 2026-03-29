@@ -1,5 +1,5 @@
 import Image from "next/image";
-import link from "next/link";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -7,15 +7,15 @@ export default function Home() {
       <img src="/logo.png" alt="Athena Hacks Logo" />
       
       <div>
-        <link href="app/session">
+        <Link href="app/session">
           <button>Start Session</button>
-        </link>
+        </Link>
       </div>
 
       <div>
-        <link href="app/garden">
+        <Link href="app/garden">
           <button>My Garden</button>
-        </link>
+        </Link>
       </div>
     </main>
   )
