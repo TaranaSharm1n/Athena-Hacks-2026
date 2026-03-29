@@ -7,7 +7,7 @@ export default function BackgroundMusic() {
     // 1. Point to your music file (put the file in your 'public' folder)
     const audio = new Audio("/bensound-moonlightdrive.mp3"); 
     audio.loop = true;
-    audio.volume = 0.3; // 30% volume
+    audio.volume = 0.4; // 30% volume
 
     const playMusic = () => {
       audio.play().catch(() => {

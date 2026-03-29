@@ -1,8 +1,31 @@
+"use client";
+
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import BackgroundMusic from "./BackgroundMusic";
 
 export default function Home() {
+
+ const clickSfx = useRef<HTMLAudioElement | null>(null);
+
+useEffect(() => {
+  // 2. Initialize the audio
+  const audio = new Audio("/dragon-studio-button-press-382713.mp3");
+  audio.preload = "auto";
+  audio.volume = 0.4;
+  clickSfx.current = audio;
+}, []);
+
+const playSound = () => {
+  // 3. Add a "null check" (The if statement) 
+  // This proves to TypeScript that the audio exists before you use it
+  if (clickSfx.current) {
+    clickSfx.current.currentTime = 0; // Reset to start
+    clickSfx.current.play();          // Now the error will disappear!
+  }
+};
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
       style={{ background: "linear-gradient(160deg, #ccdbea 0%, #c8ddf0 40%, #bdd4ec 100%)" }}>
@@ -29,13 +52,17 @@ export default function Home() {
 
        <div className="flex flex-col gap-3 w-64 mt-4">
           <Link href="/session">
-            <button className="w-full py-3 px-6 rounded-xl font-medium transition-all duration-200 hover:-translate-y-0.5 text-white"
+            <button 
+              onMouseDown={playSound} 
+              className="w-full py-3 px-6 rounded-xl font-medium transition-all duration-200 hover:-translate-y-0.5 text-white"
               style={{ background: "#4a7cbf", boxShadow: "0 4px 20px rgba(74,124,191,0.35)" }}>
               ⋆‧°𓏲ּ𝄢 Start Session
             </button>
           </Link>
           <Link href="/garden">
-            <button className="w-full py-3 px-6 rounded-xl font-medium transition-all duration-200 hover:-translate-y-0.5"
+            <button 
+              onMouseDown={playSound}
+              className="w-full py-3 px-6 rounded-xl font-medium transition-all duration-200 hover:-translate-y-0.5"
               style={{ background: "rgba(255,255,255,0.5)", color: "#4a6a9a", border: "1px solid rgba(100,140,200,0.3)" }}>
               ⋆‧°𓏲ּ𝄢 My Garden
             </button>
