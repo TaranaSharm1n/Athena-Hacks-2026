@@ -1,7 +1,9 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link"
 import { getPlantImage } from "../components/plants"
+
 
 type Plant = {
   id: number
@@ -13,7 +15,28 @@ type Plant = {
 
 const MAX_SLOTS = 9
 
+
 export default function Garden() {
+
+   const clickSfx = useRef<HTMLAudioElement | null>(null);
+
+useEffect(() => {
+  // 2. Initialize the audio
+  const audio = new Audio("/dragon-studio-button-press-382713.mp3");
+  audio.preload = "auto";
+  audio.volume = 0.4;
+  clickSfx.current = audio;
+}, []);
+
+const playSound = () => {
+  // 3. Add a "null check" (The if statement) 
+  // This proves to TypeScript that the audio exists before you use it
+  if (clickSfx.current) {
+    clickSfx.current.currentTime = 0; // Reset to start
+    clickSfx.current.play();          // Now the error will disappear!
+  }
+};
+
   const [plants, setPlants] = useState<Plant[]>([])
   const [hoverReturn, setHoverReturn] = useState(false)
 
@@ -121,7 +144,9 @@ export default function Garden() {
       {/* Plant new seed button */}
       <div className="absolute bottom-8 w-full flex justify-center">
         <Link href="/session"  className="z-10 mt-4 mb-8">
-          <button className="py-3 px-8 rounded-xl marginTop: 10px font-medium text-white hover:bg-pink-300 hover:scale-105 transition-all duration-300 ease-in-out"
+          <button 
+             onMouseDown={playSound}
+            className="psy-3 px-8 rounded-xl marginTop: 10px font-medium text-white hover:bg-pink-300 hover:scale-105 transition-all duration-300 ease-in-out"
             style={{ background: "#4a7cbf", boxShadow: "0 4px 20px rgba(74,124,191,0.35)" }}>
             ˚˖𓍢ִ໋❀ Plant a New Seed
           </button>
@@ -129,6 +154,7 @@ export default function Garden() {
 
         <Link href = "/" className="z-10 mt-4 mb-8 ml-4">
           <button
+            onMouseDown={playSound}
             className="py-3 px-8 rounded-xl font-medium text-gray-700 hover:bg-pink-300 hover:scale-105 transition-all duration-300 ease-in-out"
             onMouseEnter={() => setHoverReturn(true)}
             onMouseLeave={() => setHoverReturn(false)}
