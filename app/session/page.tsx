@@ -16,7 +16,7 @@ export default function Session() {
         backgroundImage: "repeating-linear-gradient(0deg, rgba(180,210,240,0.5) 0px, rgba(180,210,240,0.5) 1px, transparent 1px, transparent 40px)",
       }}
     >
-      <img src="/assets/Table.png" alt="table" className="bottom-0" />
+      <img src="/assets/table.png" alt="table" className="bottom-0" />
       
       
       <div className="absolute top-30 right-16 rounded-full">
