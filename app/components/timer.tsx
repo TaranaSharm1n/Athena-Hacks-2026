@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const Timer: React.FC = () => {
-    const [seconds, setSeconds] = useState(0);
-    const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [seconds, setSeconds] = useState(0);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
   const intervalRef = useRef<number | null>(null);
 
   const startTimer = () => {
@@ -18,8 +18,46 @@ const Timer: React.FC = () => {
     setSeconds(0);
   };
 
+  const clickSfx = useRef<HTMLAudioElement | null>(null);
+  const endTaskSfx = useRef<HTMLAudioElement | null>(null);
+
+
+  useEffect(() => {
+    const audio = new Audio("/dragon-studio-button-press-382713.mp3");
+    audio.preload = "auto";
+    audio.volume = 0.4;
+    clickSfx.current = audio;
+    const audio2 = new Audio("/dragon-studio-notification-ping.mp3");
+    audio2.preload = "auto";
+    audio2.volume = 0.4;
+    endTaskSfx.current = audio2;
+  }, []);
+
+  const playClickSound = () => {
+    if (clickSfx.current) {
+      clickSfx.current.currentTime = 0; 
+      clickSfx.current.play();          
+    }
+  };
+
+  const playEndTaskSound = () => {
+    if (endTaskSfx.current) {
+      endTaskSfx.current.currentTime = 0; 
+      endTaskSfx.current.play();          
+    }
+  };
+
+
+
   const toggleTimer = () => {
+    if(isRunning){
+      playEndTaskSound();
+    } else {
+      playClickSound();
+      
+    }
     setIsRunning(prev => !prev);
+    
   };
 
   useEffect(() => {
@@ -53,27 +91,20 @@ const Timer: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-slate-950 rounded-xl w-64 mx-auto">
-      <div className="text-2xl font-bitcount-grid-double text-slate-100 mb-6">
-        {formatTime(seconds)}
-      </div>
-      <div className="flex gap-2">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    <div>
+      <button
+          className="absolute -top-4 right-2 bg-slate-500 text-white px-3 py-1 rounded-xl hover:bg-slate-600"
           onClick={toggleTimer}
         >
-            Toggle On/Off
-            
-        </button>
-        
-        
-        <button
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-          onClick={resetTimer}
-        >
-          Reset
-        </button>
+            Toggle
+      </button>
+    <div className="flex flex-col items-center justify-center p-6 bg-slate-950 rounded-xl w-64 mx-auto">
+      <div className="text-4xl font-bitcount-grid-double text-slate-100">
+        {formatTime(seconds)}
       </div>
+      
+    </div>
+    
     </div>
   );
 };
