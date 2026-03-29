@@ -53,7 +53,7 @@ export default function Garden() {
       <div className="relative z-10" style={{ width: "80vw", maxWidth: "700px", height: "70vh", maxHeight: "600px" }}>
         {/* Shelf image — mixBlendMode removes black background */}
         <img
-          src="/assets/shelf.png"
+          src="assets/Shelf(1).png"
           alt="shelf"
           className="absolute inset-0 w-full h-full object-contain"
           style={{ mixBlendMode: "multiply" }}
