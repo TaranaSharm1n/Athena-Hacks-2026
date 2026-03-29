@@ -1,12 +1,14 @@
 "use client"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { getPlantImage } from "../components/plants"
 
 type Plant = {
   id: number
   name: string
   stage: number
   completed: boolean
+  plantTypeId: string
 }
 
 const MAX_SLOTS = 9
@@ -17,9 +19,9 @@ export default function Garden() {
 
   useEffect(() => {
     const dummyPlants = [
-      { id: 1, name: "Math Homework", stage: 2, completed: false },
-      { id: 2, name: "Science Project", stage: 1, completed: false },
-      { id: 3, name: "History Essay", stage: 6, completed: true },
+      { id: 1, name: "Math Homework", stage: 2, completed: false, plantTypeId: "cherry-blossoms" },
+      { id: 2, name: "Science Project", stage: 1, completed: false, plantTypeId: "cherry-blossoms" },
+      { id: 3, name: "History Essay", stage: 6, completed: true, plantTypeId: "cherry-blossoms" },
     ]
     localStorage.setItem("plants", JSON.stringify(dummyPlants))
     const saved = localStorage.getItem("plants")
@@ -85,7 +87,7 @@ export default function Garden() {
             {plant ? (
               <>
                 <img
-                  src="/plants/plantHolder.png"
+                  src={getPlantImage(plant.plantTypeId, plant.stage)}
                   alt={plant.name}
                   className="object-contain block"
                   style={{ width: "10vw", maxWidth: "200px", minWidth: "150px", height: "auto", marginBottom: "-0.4rem" }}
