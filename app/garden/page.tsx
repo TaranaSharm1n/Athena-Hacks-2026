@@ -50,54 +50,59 @@ export default function Garden() {
       </h1>
 
       {/* Shelf + plants */}
-      <div className="relative z-10" style={{ width: "80vw", maxWidth: "700px", height: "70vh", maxHeight: "600px" }}>
-        {/* Shelf image — mixBlendMode removes black background */}
-        <img
-          src="assets/Shelf(1).png"
-          alt="shelf"
-          className="absolute inset-0 w-full h-full object-contain"
-          style={{ mixBlendMode: "multiply" }}
-        />
+<div className="relative z-10 flex flex-col" style={{ width: "80vw", maxWidth: "700px" }}>
+  {rows.map((row, rowIndex) => (
+    <div key={rowIndex} className="relative" style={{ height: "25vh", maxHeight: "180px" }}>
+      
+      {/* One shelf image per row */}
+      <img
+        src="/assets/Shelf-updated.png"
+        alt="shelf"
+        className="absolute bottom-8 left-0"
+        style={{ 
+          mixBlendMode: "multiply",
+          width: "100%",
+          height: "auto",
+        }}
+/     >
 
-        {/* Plant slots */}
-        <div className="absolute inset-0 flex flex-col justify-around px-16 py-6">
-          {rows.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex flex-row justify-around items-end">
-              {row.map((plant, slotIndex) => (
-                <div key={slotIndex} className="flex flex-col items-center" style={{ width: "120px" }}>
-                  {plant ? (
-                    <>
-                      <img
-                        src="/plants/plantHolder.png"
-                        alt={plant.name}
-                        className="object-contain block"
-                        style={{ width: "8vw", maxWidth: "80px", minWidth: "50px", height: "auto", marginBottom: "-4px" }}
-                      />
-                      <div className="rounded-full overflow-hidden bg-gray-300" style={{ width: "8vw", maxWidth: "80px", minWidth: "50px", height: "6px" }}>
-                        <div className="h-full bg-green-500 rounded-full transition-all duration-300"
-                          style={{ width: `${(plant.stage / 6) * 100}%` }} />
-                      </div>
-                      <p className="text-xs font-medium text-center mt-1"
-                        style={{ color: "#321d0c", maxWidth: "80px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                        {plant.name}
-                      </p>
-                    </>
-                  ) : (
-                    // Empty slot indicator
-                    <div style={{
-                      width: "5vw", maxWidth: "50px", minWidth: "30px",
-                      height: "5vw", maxHeight: "50px", minHeight: "30px",
-                      borderRadius: "50%",
-                      border: "2px dashed rgba(100,80,60,0.2)",
-                      marginBottom: "24px"
-                    }} />
-                  )}
+      {/* Plants sitting on this shelf */}
+      <div className="absolute inset-0 flex flex-row justify-around items-end pb-4">
+        {row.map((plant, slotIndex) => (
+          <div key={slotIndex} className="flex flex-col items-center" style={{ width: "8vw", maxWidth: "100px", minWidth: "60px" }}>
+            {plant ? (
+              <>
+                <img
+                  src="/plants/plantHolder.png"
+                  alt={plant.name}
+                  className="object-contain block"
+                  style={{ width: "10vw", maxWidth: "200px", minWidth: "150px", height: "auto", marginBottom: "-0.4rem" }}
+                />
+                <div className="rounded-full overflow-hidden bg-gray-300" style={{ width: "8vw", maxWidth: "80px", minWidth: "50px", height: "6px" }}>
+                  <div className="h-full bg-green-500 rounded-full transition-all duration-300"
+                    style={{ width: `${(plant.stage / 6) * 100}%` }} />
                 </div>
-              ))}
-            </div>
-          ))}
-        </div>
+                <p className="text-xs font-medium text-center mt-1"
+                  style={{ color: "#321d0c", maxWidth: "80px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {plant.name}
+                </p>
+              </>
+            ) : (
+              <div style={{
+                width: "5vw", maxWidth: "50px", minWidth: "30px",
+                height: "5vw", maxHeight: "50px", minHeight: "30px",
+                borderRadius: "50%",
+                border: "2px dashed rgba(100,80,60,0.2)",
+                marginBottom: "16px"
+              }} />
+            )}
+          </div>
+        ))}
       </div>
+
+    </div>
+  ))}
+</div>
 
       {/* Plant new seed button */}
       <div className="absolute bottom-8 w-full flex justify-center">
