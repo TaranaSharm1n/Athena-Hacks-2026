@@ -13,6 +13,7 @@ const MAX_SLOTS = 9
 
 export default function Garden() {
   const [plants, setPlants] = useState<Plant[]>([])
+  const [hoverReturn, setHoverReturn] = useState(false)
 
   useEffect(() => {
     const dummyPlants = [
@@ -52,7 +53,7 @@ export default function Garden() {
       <div className="relative z-10" style={{ width: "80vw", maxWidth: "700px", height: "70vh", maxHeight: "600px" }}>
         {/* Shelf image — mixBlendMode removes black background */}
         <img
-          src="?assets/Shelf.png"
+          src="/assets/shelf.png"
           alt="shelf"
           className="absolute inset-0 w-full h-full object-contain"
           style={{ mixBlendMode: "multiply" }}
@@ -99,11 +100,24 @@ export default function Garden() {
       </div>
 
       {/* Plant new seed button */}
-      <div className="absolute bottom-10 w-full flex justify-center">
+      <div className="absolute bottom-8 w-full flex justify-center">
         <Link href="/session"  className="z-10 mt-4 mb-8">
-          <button className="py-3 px-8 rounded-xl font-medium text-white"
+          <button className="py-3 px-8 rounded-xl font-medium text-white hover:bg-pink-300 hover:scale-105 transition-all duration-300 ease-in-out"
             style={{ background: "#4a7cbf", boxShadow: "0 4px 20px rgba(74,124,191,0.35)" }}>
-            🌱 Plant a New Seed
+            ˚˖𓍢ִ໋❀ Plant a New Seed
+          </button>
+        </Link>
+
+        <Link href = "/" className="z-10 mt-4 mb-8 ml-4">
+          <button
+            className="py-3 px-8 rounded-xl font-medium text-gray-700 hover:bg-pink-300 hover:scale-105 transition-all duration-300 ease-in-out"
+            onMouseEnter={() => setHoverReturn(true)}
+            onMouseLeave={() => setHoverReturn(false)}
+            style={{
+              background: hoverReturn ? "rgba(255,255,255,0.7)" : "rgba(255, 255, 255, 0.67)",
+              border: "1px solid rgba(100,140,200,0.3)"
+            }}>
+            ⤷ ゛Return  ˎˊ˗
           </button>
         </Link>
       </div>
