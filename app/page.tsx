@@ -7,13 +7,13 @@ export default function Home() {
       <img src="/logo.png" alt="Athena Hacks Logo" />
       
       <div>
-        <link href href="/session" passHref>
+        <link href="app/session">
           <button>Start Session</button>
         </link>
       </div>
 
       <div>
-        <link href href="/garden" passHref>
+        <link href="app/garden">
           <button>My Garden</button>
         </link>
       </div>
