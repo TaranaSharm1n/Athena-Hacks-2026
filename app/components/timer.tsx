@@ -4,9 +4,10 @@ import TimerPopup from "./timer_popup";
 
 interface TimerProps {
   durationMinutes: number;
+  onSessionStart?: (taskName: string, plantTypeId: string, minutes: number) => void;
 }
 
-const Timer: React.FC<TimerProps> = ({ durationMinutes }) => {
+const Timer: React.FC<TimerProps> = ({ durationMinutes, onSessionStart }) => {
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -54,11 +55,12 @@ const Timer: React.FC<TimerProps> = ({ durationMinutes }) => {
     }
   };
 
-  const handlePopupConfirm = () => {
+  const handlePopupConfirm = (taskName: string, plantTypeId: string, minutes: number) => {
     setIsPopupOpen(false);
     setHasStarted(true);
     setIsRunning(true);
     playClickSound();
+    if (onSessionStart) onSessionStart(taskName, plantTypeId, minutes);
   };
 
   useEffect(() => {
