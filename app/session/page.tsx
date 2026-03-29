@@ -7,6 +7,7 @@ import WorkTimerPopup from "../components/timer_popup";
 
 
 export default function Session() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   return (
     <main className="h-screen w-screen flex justify-center"
@@ -23,13 +24,9 @@ export default function Session() {
       </div>
 
       <div className="absolute top-80 right-80 text-center">
-        <Timer />
+        <Timer durationMinutes={30}/>
       </div>
-      <WorkTimerPopup
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-        onConfirm={handleConfirm}
-      />
+      
     </main>
   );
 }
