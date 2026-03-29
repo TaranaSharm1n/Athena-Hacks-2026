@@ -3,11 +3,9 @@ import React, { useState, useEffect, useRef } from "react";
 
 const Timer: React.FC = () => {
     const [seconds, setSeconds] = useState(0);
-
-  // Interval ref (browser-safe)
+    const [isRunning, setIsRunning] = useState<boolean>(false);
   const intervalRef = useRef<number | null>(null);
 
-  // Start the timer
   const startTimer = () => {
     if (intervalRef.current !== null) return; // prevent multiple intervals
     intervalRef.current = window.setInterval(() => {
@@ -15,28 +13,32 @@ const Timer: React.FC = () => {
     }, 1000);
   };
 
-  // Pause the timer
-  const pauseTimer = () => {
-    if (intervalRef.current !== null) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  };
-
-  // Reset the timer
   const resetTimer = () => {
-    pauseTimer();
+    setIsRunning(false);
     setSeconds(0);
   };
 
-  
+  const toggleTimer = () => {
+    setIsRunning(prev => !prev);
+  };
 
-  // Cleanup on unmount
   useEffect(() => {
+    if (isRunning) {
+      intervalRef.current = window.setInterval(() => {
+        setSeconds(prev => prev + 1);
+      }, 1000);
+    } else {
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+
+    // Cleanup on unmount
     return () => {
       if (intervalRef.current !== null) clearInterval(intervalRef.current);
     };
-  }, []);
+  }, [isRunning]);
 
   // Format seconds into HH:MM:SS
   const formatTime = (sec: number) => {
@@ -51,24 +53,20 @@ const Timer: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-gray-100 rounded shadow-md w-64 mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">Timer</h1>
-      <div className="text-2xl font-mono text-gray-700 mb-6">
+    <div className="flex flex-col items-center justify-center p-6 bg-slate-950 rounded-xl w-64 mx-auto">
+      <div className="text-2xl font-bitcount-grid-double text-slate-100 mb-6">
         {formatTime(seconds)}
       </div>
       <div className="flex gap-2">
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-          onClick={startTimer}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          onClick={toggleTimer}
         >
-          Start
+            Toggle On/Off
+            
         </button>
-        <button
-          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
-          onClick={pauseTimer}
-        >
-          Pause
-        </button>
+        
+        
         <button
           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
           onClick={resetTimer}
