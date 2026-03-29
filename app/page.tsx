@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import BackgroundMusic from "./BackgroundMusic";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
       style={{ background: "linear-gradient(160deg, #ccdbea 0%, #c8ddf0 40%, #bdd4ec 100%)" }}>
       
+      <BackgroundMusic />
+
       {/* Soft background blobs */}
       <div style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%", background: "#84f8bc", opacity: 0.35, top: -80, right: -60, filter: "blur(40px)" }} />
       <div style={{ position: "absolute", width: 250, height: 250, borderRadius: "50%", background: "#77d3a1", opacity: 0.4, bottom: -60, left: -40, filter: "blur(40px)" }} />
