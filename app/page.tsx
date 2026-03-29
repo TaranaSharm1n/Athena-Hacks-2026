@@ -4,13 +4,8 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main>
-      {/* <div className="flex flex-col items-center justify-center h-screen gap-0.125">
-       
-      </div>
-       */}
-      
-
-      <div className="flex flex-col items-center justify-center h-screen gap-0.125">
+      <div className="bg-[url('/img/mountains.jpg')] h-48 w-full bg-cover bg-center">
+        <div className="flex flex-col items-center justify-center h-screen gap-0.125">
         <img className = "h-16 w-16" src="/assets/flowerPlaceholder.png" alt="Athena Hacks Logo" />
         <h1 className="text-4xl font-bold text-center">Welcome to Athena Hacks!</h1>
         <p className="text-lg text-center">Grow Your Producitivity!</p>
@@ -24,7 +19,7 @@ export default function Home() {
           My Garden
         </button>
       </div>
-
+      </div>
     </main>
   )
 }
