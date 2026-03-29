@@ -4,9 +4,9 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main>
-      <div className="bg-[url('/img/mountains.jpg')] h-48 w-full bg-cover bg-center">
+      <div className="bg-[url('/assets/bg.jpg')] h-500 w-full bg-cover bg-bottom">
         <div className="flex flex-col items-center justify-center h-screen gap-0.125">
-        <img className = "h-16 w-16" src="/assets/flowerPlaceholder.png" alt="Athena Hacks Logo" />
+        <img className = "h-50 w-100" src="/assets/Logo.png" alt="Athena Hacks Logo" />
         <h1 className="text-4xl font-bold text-center">Welcome to Athena Hacks!</h1>
         <p className="text-lg text-center">Grow Your Producitivity!</p>
         <br /> <br />
