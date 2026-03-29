@@ -22,7 +22,7 @@ export default function Session() {
 
   function calculateStage(elapsed: number, total: number): number {
     if (total === 0) return 1
-    const progress = elapsed / total
+    const progress = elapsed / total 
     const stage = Math.floor(progress * 6) + 1
     return Math.min(stage, 6)
   }

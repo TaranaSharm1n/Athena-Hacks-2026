@@ -1,4 +1,5 @@
 "use client";
+import { Micro_5 } from "next/font/google";
 import React, { useState } from "react";
 
 interface TimerPopupProps {
@@ -37,7 +38,7 @@ const TimerPopup: React.FC<TimerPopupProps> = ({ isOpen, onClose, onConfirm }) =
           onChange={(e) => setSelectedMinutes(Number(e.target.value))}
           className="w-full p-2 rounded bg-gray-700 text-white"
         >
-          {Array.from({ length: 8 }, (_, i) => (i + 1) * 30).map((minutes) => (
+          {[6, ...Array.from({ length: 8 }, (_, i) => (i + 1) * 30)].map((minutes) => (
             <option key={minutes} value={minutes}>
               {minutes} minutes
             </option>

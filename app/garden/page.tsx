@@ -63,7 +63,7 @@ export default function Garden() {
     textShadow: "0 4px 20px rgba(180,120,80,0.25), 0 1px 0 rgba(255,255,255,0.6)",
     animation: "float 5s ease-in-out infinite",
     marginTop: "0.5rem",
-    marginBottom: "4rem",
+    marginBottom: "6rem",
     lineHeight: 1.1,
   }}>
   °࿔*:･My Garden°❀⋆･°
@@ -125,15 +125,15 @@ export default function Garden() {
 </div>
 
       {/* Plant new seed button */}
-      <div className="absolute bottom-8 w-full flex justify-center">
-        <Link href="/session"  className="z-10 mt-4 mb-8">
+      <div className="absolute -bottom-2 w-full flex justify-center">
+        <Link href="/session"  className="z-10 mt-8 mb-8">
           <button className="py-3 px-8 rounded-xl marginTop: 10px font-medium text-white hover:bg-pink-300 hover:scale-105 transition-all duration-300 ease-in-out"
             style={{ background: "#4a7cbf", boxShadow: "0 4px 20px rgba(74,124,191,0.35)" }}>
             ˚˖𓍢ִ໋❀ Plant a New Seed
           </button>
         </Link>
 
-        <Link href = "/" className="z-10 mt-4 mb-8 ml-4">
+        <Link href = "/" className="z-10 mt-8 mb-8 ml-4">
           <button
             className="py-3 px-8 rounded-xl font-medium text-gray-700 hover:bg-pink-300 hover:scale-105 transition-all duration-300 ease-in-out"
             onMouseEnter={() => setHoverReturn(true)}
