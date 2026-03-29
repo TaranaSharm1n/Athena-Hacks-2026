@@ -88,9 +88,9 @@ export default function Session() {
 
       <img src="/assets/Table.png" alt="table" className="absolute bottom-0" />
 
-      {/* Plant on the desk */}
+      {/* Plant on the desk*/}
       {currentPlant && (
-        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 flex flex-col items-center">
+        <div className="absolute top-150 left-40 items-center flex flex-col">
           <img
             src={getPlantImage(currentPlant.plantTypeId, currentPlant.stage)}
             alt={currentPlant.name}
@@ -106,7 +106,7 @@ export default function Session() {
         <WebcamFeed />
       </div>
 
-      <div className="absolute top-80 right-80 text-center">
+      <div className="absolute top-150 right-80 text-center">
         <Timer
           durationMinutes={totalSeconds / 60 || 30}
           onSessionStart={handleSessionStart}
