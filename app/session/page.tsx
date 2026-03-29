@@ -2,11 +2,8 @@
 import { useState, useEffect } from "react";
 import Timer from "../components/timer";
 import WebcamFeed from "../components/webcam";
-<<<<<<< Updated upstream
 import Link from "next/link";
-=======
 import { getPlantImage } from "../components/plants";
->>>>>>> Stashed changes
 
 type Plant = {
   id: number
@@ -30,28 +27,26 @@ export default function Session() {
     return Math.min(stage, 6)
   }
 
-  // Called when Timer's popup confirms — gets minutes from timer
   function handleSessionStart(taskName: string, plantTypeId: string, minutes: number) {
-  const total = minutes * 60
-  setTotalSeconds(total)
-  setElapsedSeconds(0)
-  setSessionActive(true)
+    const total = minutes * 60
+    setTotalSeconds(total)
+    setElapsedSeconds(0)
+    setSessionActive(true)
 
-  const newPlant: Plant = {
-    id: Date.now(),
-    name: taskName,
-    stage: 1,
-    completed: false,
-    plantTypeId: plantTypeId,
+    const newPlant: Plant = {
+      id: Date.now(),
+      name: taskName,
+      stage: 1,
+      completed: false,
+      plantTypeId: plantTypeId,
+    }
+
+    const saved = localStorage.getItem("plants")
+    const existing: Plant[] = saved ? JSON.parse(saved) : []
+    localStorage.setItem("plants", JSON.stringify([...existing, newPlant]))
+    setCurrentPlant(newPlant)
   }
 
-  const saved = localStorage.getItem("plants")
-  const existing: Plant[] = saved ? JSON.parse(saved) : []
-  localStorage.setItem("plants", JSON.stringify([...existing, newPlant]))
-  setCurrentPlant(newPlant)
-}
-
-  // Tick elapsed time and update plant stage
   useEffect(() => {
     if (!sessionActive || !currentPlant || totalSeconds === 0) return
 
@@ -84,34 +79,14 @@ export default function Session() {
         backgroundImage: "repeating-linear-gradient(0deg, rgba(180,210,240,0.5) 0px, rgba(180,210,240,0.5) 1px, transparent 1px, transparent 40px)",
       }}
     >
-<<<<<<< Updated upstream
-     <Link href = "/">
-      <button className = "absolute top-10 left-10 rounded-xl bg-slate-500 text-white px-4 py-2 hover:bg-slate-600"
-        >
-        Back to Home
-      </button>
+      {/* Dev 1's back button */}
+      <Link href="/">
+        <button className="absolute top-10 left-10 rounded-xl bg-slate-500 text-white px-4 py-2 hover:bg-slate-600">
+          Back to Home
+        </button>
       </Link>
 
-      <img src="/assets/table.png" alt="table" className="bottom-0" />
-      
-      
-      <div className="absolute top-30 right-16 rounded-full">
-=======
       <img src="/assets/Table.png" alt="table" className="absolute bottom-0" />
-
-      {/* Task name input — shows before session starts */}
-      {!sessionActive && (
-        <div className="absolute top-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-          <input
-            type="text"
-            placeholder="What are you working on?"
-            value={taskName}
-            onChange={e => setTaskName(e.target.value)}
-            className="px-4 py-2 rounded-xl border text-sm"
-            style={{ background: "rgba(255,255,255,0.8)", color: "#321d0c" }}
-          />
-        </div>
-      )}
 
       {/* Plant on the desk */}
       {currentPlant && (
@@ -128,7 +103,6 @@ export default function Session() {
       )}
 
       <div className="absolute top-8 right-16 rounded-full">
->>>>>>> Stashed changes
         <WebcamFeed />
       </div>
 
