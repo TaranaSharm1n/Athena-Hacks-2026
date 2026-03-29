@@ -11,11 +11,11 @@ export const PLANT_TYPES: PlantType[] = [
     stages:
         [
             "/plants/Pot.png",
-            "/plants/CherryS2.png",
-            "/plants/CherryS3.png",
-            "/plants/CherryS4.png", 
-            "/plants/CherryS5.png",
-            "/plants/CherryS6.png",
+            "/plants/Cherrys2.png",
+            "/plants/Cherrys3.png",
+            "/plants/Cherrys4.png", 
+            "/plants/Cherrys5.png",
+            "/plants/Cherrys6.png",
         ],
     },  
 ]
