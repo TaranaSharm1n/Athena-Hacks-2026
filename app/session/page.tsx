@@ -86,7 +86,7 @@ export default function Session() {
         </button>
       </Link>
 
-      <img src="/assets/table.png" alt="table" className="absolute bottom-0" />
+      <img src="assets/table.png" alt="table" className="absolute bottom-0" />
 
       {/* Plant on the desk*/}
       {currentPlant && (
