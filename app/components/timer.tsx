@@ -99,7 +99,7 @@ const Timer: React.FC<TimerProps> = ({ durationMinutes }) => {
         {hasStarted ? (isRunning ? "Pause" : "Resume") : "Set Timer"}
       </button>
 
-      <div className="flex flex-col items-center justify-center p-6 bg-slate-950 rounded-xl w-64 mx-auto">
+      <div className="flex flex-col items-center justify-center p-6 bg-slate-950 border-8 border-slate-600 rounded-xl w-64 mx-auto">
         <div className="text-4xl font-bitcount-grid-double text-slate-100">
           {formatTime(seconds)}
         </div>
