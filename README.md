@@ -1,36 +1,43 @@
-npThis is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Focus Bloom! 
+Focus Bloom is a productivity application that transforms work sessions into an interactive, visual experience. By combining real-time attention tracking with gamification, it helps users stay focused and build better study habits.
 
-## Getting Started
+Overview
+Focus Bloom uses a device’s webcam and activity signals to determine whether a user is actively engaged in their work. Powered by Presage, the system tracks attention through eye movement and user activity, such as keystrokes, to measure focus in real time.
 
-First, run the development server:
+During a session, productivity directly impacts the growth of a virtual plant:
+* Consistent focus leads to plant growth and progression through stages
+* Distraction slows progress or causes damage to the plant
+* Over time, users cultivate a virtual garden that reflects their accumulated productivity, providing a clear and motivating record of their work.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Features
+* Real-time attention tracking via webcam
+* Activity monitoring using eye movement and keystrokes
+* Gamified focus system with plant growth stages
+* Persistent virtual garden representing productivity history
+* Customizable work session timing
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Inspiration
+Focus Bloom was designed to make focus visible, interactive, and rewarding. By turning productivity into a living system, it encourages accountability and reinforces positive work habits, particularly during independent study sessions.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Built With
+* Presage for attention tracking
+* Web-based technologies for frontend and deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Live Demo
+https://athena-hacks-2026.vercel.app/
 
-## Learn More
+DevPost
+https://devpost.com/software/1234720/joins/wJHile7rQXpPRGZX6vpYSw
 
-To learn more about Next.js, take a look at the following resources:
+Team
+Built by USC students:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Tarana Sharmin
+* Micah Muir
+* Emily Zhang
+* Evy Chan
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Hackathon
+This project was created at Athena Hacks 2026, a hackathon focused on closing the gender gap in technology, exploring new ideas, and building impactful projects. The event promotes an inclusive environment that supports underrepresented groups in tech, including women, trans, and non-binary individuals.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
